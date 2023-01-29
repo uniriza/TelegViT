@@ -1,6 +1,8 @@
 import telebot
+import requests
+import time
+from bs4 import BeautifulSoup
 from telebot import types
-
 
 
 
@@ -11,11 +13,16 @@ def start(message):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
     one_button = types.KeyboardButton("POSRAT")
     markup.add(one_button)
-    client.send_message(message.chat.id, text="", reply_markup=markup)
+    client.send_message(message.chat.id, text="kek", reply_markup=markup)
+
 @client.message_handler(content_types=['text'])
 def func(message):
-    if(message.text == "POSRAT"):
-
+    if(message.text == 'POSRAT'):
+            url_to_crawl = "https://vk.com/superfezdgjik"
+            response = requests.get(url_to_crawl)
+            soup = BeautifulSoup(response.text, "lxml")
+            lala = soup.title
+            client.send_message(message.chat.id, text=str(lala))
 
 
 
