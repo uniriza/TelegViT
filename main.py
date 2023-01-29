@@ -1,1 +1,1 @@
-print("proverka nn")
+print("proverka rabota")
